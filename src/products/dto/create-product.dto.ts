@@ -3,7 +3,7 @@ import { IsString, MinLength, IsNumber, IsPositive, IsOptional, IsInt, IsArray, 
 export class CreateProductDto {
     @IsString()
     @MinLength(1)
-    tittle: string;
+    title: string;
     
     @IsNumber()
     @IsPositive()
