@@ -18,27 +18,32 @@ import { PaginationDto } from 'src/common/dtos/pagination.dto';
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
+  //! create product
   @Post()
   create(@Body() createProductDto: CreateProductDto) {
     return this.productsService.create(createProductDto);
   }
 
+  //! find all products
   @Get()
   findAll(@Query() paginationDto: PaginationDto) {
     console.log(paginationDto);
     return this.productsService.findAll(paginationDto);
   }
 
-  @Get(':id')
-  findOne(@Param('id', ParseUUIDPipe) id: string) {
-    return this.productsService.findOne(id);
+  //! find one product
+  @Get(':term')
+  findOne(@Param('term', ParseUUIDPipe) term: string) {
+    return this.productsService.findOne(term);
   }
 
+  //! update product
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
     return this.productsService.update(+id, updateProductDto);
   }
 
+  //! remove product
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.productsService.remove(id);
