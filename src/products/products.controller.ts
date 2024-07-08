@@ -27,13 +27,13 @@ export class ProductsController {
   //! find all products
   @Get()
   findAll(@Query() paginationDto: PaginationDto) {
-    console.log(paginationDto);
+    
     return this.productsService.findAll(paginationDto);
   }
 
   //! find one product
   @Get(':term')
-  findOne(@Param('term', ParseUUIDPipe) term: string) {
+  findOne(@Param('term', ) term: string) {
     return this.productsService.findOne(term);
   }
 
