@@ -1,11 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Product } from '.';
 
 @Entity()
 export class ProductImage {
   @PrimaryGeneratedColumn()
-    id: number;
+  id: number;
 
-    @Column('text')
-    url : string;
+  @Column('text')
+  url: string;
 
+  @ManyToOne(() => Product, (product) => product.image)
+  product: Product;
 }
