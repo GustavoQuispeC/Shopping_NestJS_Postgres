@@ -123,10 +123,11 @@ async findOnePlain(term: string) {
       this.handleDBExceptions(error);
     }
   }
-
+//! remove product
   async remove(id: string) {
     const product = await this.findOne(id);
     await this.productRepository.remove(product);
+
   }
 
   // manejar excepciones de base de datos
@@ -136,5 +137,17 @@ async findOnePlain(term: string) {
     throw new InternalServerErrorException(
       'unexpected error, check server logs',
     );
+  }
+
+  // eliminar todos los productos
+  async deleteAllProducts() {
+    const query = this.productRepository.createQueryBuilder('product');
+    try {
+      return await query.delete().where({}).execute();
+      
+    } catch (error) {
+      this.handleDBExceptions(error);
+      
+    }
   }
 }
