@@ -14,10 +14,15 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { fileFilter } from './helpers/file.Filter.helper';
 import { diskStorage } from 'multer';
 import { fileNamer } from './helpers/file.Namer.helper';
+import { ConfigService } from '@nestjs/config';
+
 
 @Controller('files')
 export class FilesController {
-  constructor(private readonly filesService: FilesService) {}
+  constructor(
+    private readonly filesService: FilesService,
+    private readonly configService: ConfigService,// ConfigService is injected here to read the environment variables
+  ) {}
 
   @Get(`product/:imageName`)
 
@@ -47,7 +52,7 @@ export class FilesController {
     if (!file) {
       throw new BadRequestException('make sure that file is an image');
     }
-    const secureUrl = `${file.filename}`;
+    const secureUrl = `${this.configService.get('HOST_API')}/files/product/${file.filename}`;
 
     return {
       secureUrl,
