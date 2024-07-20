@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import loadConfig from 'next/dist/server/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,8 +13,8 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
-  
-  await app.listen(process.env.PORT || 3000);
+
+  await app.listen(process.env.PORT || 3002);
   console.log(`Application is running on port: ${process.env.PORT || 3000}`);
 }
 bootstrap();
