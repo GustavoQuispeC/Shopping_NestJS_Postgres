@@ -9,12 +9,12 @@ async function bootstrap() {
   //! Add the following line to the bootstrap function to enable validation globally:
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true,
+      whitelist: false,
       forbidNonWhitelisted: true,
     }),
   );
 
-  await app.listen(process.env.PORT || 3002);
+  await app.listen(process.env.PORT || 3000);
   console.log(`Application is running on port: ${process.env.PORT || 3000}`);
 }
 bootstrap();
